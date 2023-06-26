@@ -62,16 +62,16 @@ find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.g
 
 7. Identify all processes that have been running for more than 3 days period and terminate them.
 
-#!/usr/bin/bash
+!/usr/bin/bash
 
 ->Identify processes running for more than 3 days
 
-processes=$(ps -eo pid,etimes --sort=etimes | awk -v limit=$((3*24*60*60)) '$2 > limit' | awk '{print $1}')
+processes=$(ps -eo pid,etimes --sort=etimes --no-headers | awk -v limit=$((3*24*60 * 60)) '$2 > limit' | awk '{print $1}')
 
-->Terminating the selected processes
+->terminating the selected processes
 
 for pid in $processes; do
-    kill "$pid"
+        kill "$pid"
 done
 
 
